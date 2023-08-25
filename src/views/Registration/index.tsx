@@ -18,7 +18,15 @@ const Registration = () => {
     city: "",
     pin_code: "",
   })
+  const [search, setSearch] = useState<string>()
   const [RegistrationDetails, setRegistrationDetails]: any = useState([])
+  const getData =
+    RegistrationDetails.length > 0 && !search
+      ? RegistrationDetails
+      : RegistrationDetails &&
+        RegistrationDetails.filter(
+          (filterName: any) => filterName.name === search
+        )
   const dispatch = useDispatch()
   const handleChange = (e: any) => {
     setData((prevData: any) => {
@@ -54,7 +62,47 @@ const Registration = () => {
     }
   }
 
-  console.log("RegistrationDetails", RegistrationDetails)
+  const tableHeader = () => {
+    return (
+      <>
+        <th scope='col'>#</th>
+        <th scope='col'>Name</th>
+        <th scope='col'>Email</th>
+        <th scope='col'>DOB</th>
+        <th scope='col'>City</th>
+        <th scope='col'>Pin Code</th>
+      </>
+    )
+  }
+  const tableBody = () => {
+    return (
+      <>
+        {RegistrationDetails.length ? (
+          getData.map((obj: any, index: number) => {
+            return (
+              <>
+                <tbody>
+                  <tr>
+                    <th scope='row'>{index + 1}</th>
+                    <td>{obj.name}</td>
+                    <td>{obj.email}</td>
+                    <td>{obj.dob}</td>
+                    <td>{obj.city}</td>
+                    <td>{obj.pin_code}</td>
+                  </tr>
+                </tbody>
+              </>
+            )
+          })
+        ) : (
+          <tr className='text-dark text-center'>
+            <td colSpan={6}>No Data avilable</td>
+          </tr>
+        )}
+      </>
+    )
+  }
+
   return (
     <>
       <div className='container text-start mt-4'>
@@ -125,7 +173,12 @@ const Registration = () => {
           <button className='btn btn-primary' type='submit'>
             Submit
           </button>
-          <Table data={RegistrationDetails} />
+          <Table
+            header={tableHeader}
+            body={tableBody}
+            search={(text: string) => setSearch(text)}
+            isSearch={true}
+          />
         </form>
       </div>
     </>
