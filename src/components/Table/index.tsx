@@ -5,7 +5,7 @@ const Table = ({ data = "" }: any) => {
   const getData =
     data.length > 0 && !search
       ? data
-      : data.filter((filterName: any) => filterName.name === search)
+      : data && data.filter((filterName: any) => filterName.name === search)
   return (
     <table className='table table-dark table-striped mt-4'>
       <thead>
