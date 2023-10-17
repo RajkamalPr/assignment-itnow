@@ -8,18 +8,21 @@ function App() {
   return (
     <div className='App'>
       <div className='d-flex justify-content-end m-2'>
-        <button
-          className='btn btn-primary m-1'
-          onClick={() => setSelect("Reg")}
-        >
-          Registration
-        </button>{" "}
-        <button
-          className='btn btn-primary m-1'
-          onClick={() => setSelect("weather")}
-        >
-          Weather
-        </button>
+        {select === "weather" ? (
+          <button
+            className='btn btn-primary m-1'
+            onClick={() => setSelect("Reg")}
+          >
+            Registration
+          </button>
+        ) : (
+          <button
+            className='btn btn-primary m-1'
+            onClick={() => setSelect("weather")}
+          >
+            Weather
+          </button>
+        )}
       </div>
       {select === "Reg" ? (
         <Registration />

@@ -185,7 +185,7 @@ const Weather = () => {
 
   return (
     <div className='container'>
-      <h2>Wether Report</h2>
+      <h2>Weather Report</h2>
       <hr />
       {!location ? (
         <>
@@ -200,7 +200,7 @@ const Weather = () => {
             />
           </div>
           <button className='btn btn-primary' onClick={handleLocationClick}>
-            Get Wether Report
+            Get Weather Report
           </button>
         </>
       ) : null}

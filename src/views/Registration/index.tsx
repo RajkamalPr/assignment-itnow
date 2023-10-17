@@ -19,7 +19,7 @@ const Registration = () => {
     pin_code: "",
   })
   const [search, setSearch] = useState<string>()
-  const [RegistrationDetails, setRegistrationDetails]: any = useState([])
+  const [RegistrationDetails, setRegistrationDetails] = useState<any>([])
   const getData =
     RegistrationDetails.length > 0 && !search
       ? RegistrationDetails
